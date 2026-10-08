@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  
+  --radius: var(--radius);
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+}
+
+@layer base {
+  :root {
+    --background: #F4F5F7;
+    --foreground: #0C1A2E;
+    
+    --card: #FFFFFF;
+    --card-foreground: #0C1A2E;
+    
+    --popover: #FFFFFF;
+    --popover-foreground: #0C1A2E;
+    
+    --primary: #F2A93B;
+    --primary-foreground: #0C1A2E;
+    
+    --secondary: #12253F;
+    --secondary-foreground: #FFFFFF;
+    
+    --muted: #E1E5EB;
+    --muted-foreground: #6B7787;
+    
+    --accent: rgba(242,169,59,0.14);
+    --accent-foreground: #D98A15;
+    
+    --success: #1F9D73;
+    --warning: #F59E0B;
+    --info: #3B82F6;
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+    
+    --border: #E1E5EB;
+    --input: #D3D9E2;
+    --ring: #F2A93B;
+    
+    --sidebar-background: #FFFFFF;
+    --sidebar-foreground: #6B7787;
+    --sidebar-primary: #F2A93B;
+    --sidebar-accent: rgba(12, 26, 46, 0.05);
+    --sidebar-accent-foreground: #0C1A2E;
+    --sidebar-border: #E1E5EB;
+    
+    --radius: 12px;
+  }
+
+  .dark {
+    --background: #0C1A2E;
+    --foreground: #F4F5F7;
+    
+    --card: #12253F;
+    --card-foreground: #FFFFFF;
+    
+    --popover: #12253F;
+    --popover-foreground: #FFFFFF;
+    
+    --primary: #F2A93B;
+    --primary-foreground: #0C1A2E;
+    
+    --secondary: #1B3350;
+    --secondary-foreground: #FFFFFF;
+    
+    --muted: #1B3350;
+    --muted-foreground: #9DB0C6;
+    
+    --accent: rgba(242,169,59,0.14);
+    --accent-foreground: #F2A93B;
+    
+    --success: #1F9D73;
+    --warning: #F59E0B;
+    --info: #3B82F6;
+    --destructive: #EF4444;
+    
+    --border: #1B3350;
+    --input: #1B3350;
+    --ring: #F2A93B;
+    
+    --sidebar-background: #0C1A2E;
+    --sidebar-foreground: #9DB0C6;
+    --sidebar-primary: #F2A93B;
+    --sidebar-accent: rgba(255,255,255,0.05);
+    --sidebar-accent-foreground: #FFFFFF;
+    --sidebar-border: #1B3350;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+  button, [role="button"] {
+    cursor: pointer;
+  }
+}
+
+/* Theme-aware brand logo */
+.logo-dark { display: none; }
+.dark .logo-light { display: none; }
+.dark .logo-dark { display: block; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Skeleton Loader */
+@keyframes skeleton-load {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--muted), var(--card), var(--muted));
+  background-size: 200% 100%;
+  animation: skeleton-load 1.5s infinite linear;
+  border-radius: calc(var(--radius) - 4px);
+}
+
+/* Modal Animations */
+@keyframes modal-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes backdrop-enter {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.modal-backdrop-enter {
+  animation: backdrop-enter 300ms ease-out forwards;
+}
+
+@keyframes drawer-enter {
+  0% { transform: translateX(32px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+.drawer-enter {
+  animation: drawer-enter 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-dialog-enter {
+  animation: modal-enter 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Standalone: Next.js injected these from next/font; here the fonts come from Google Fonts (index.html). */
+body {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Sora", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
+}
